@@ -1,0 +1,15 @@
+# Node modules
+node_modules/
+**/node_modules/
+
+# Environment files
+.env
+**/.env
+
+# Production build directories
+dist/
+**/dist/
+
+# System files
+.DS_Store
+Thumbs.db
