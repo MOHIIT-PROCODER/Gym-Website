@@ -20,7 +20,7 @@ import Gallery from "./assets/component/Gallery";
 import ScrollToTop from "./assets/component/ScrollToTop";
 
 function App() {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
 
   useEffect(() => {
     if (theme === "dark") {
