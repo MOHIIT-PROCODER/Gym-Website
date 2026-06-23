@@ -9,7 +9,7 @@ function Plans() {
   useEffect(() => {
     const fetchPlans = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/plans/all");
+        const res = await axios.get(`${import.meta.env.VITE_SERVER_URL || 'http://localhost:5000'}/api/plans/all`);
         setDbPlans(res.data);
       } catch (err) {
         console.error("Failed to fetch plans from DB:", err);
@@ -70,7 +70,7 @@ function Plans() {
       const planId = dbPlanObj ? dbPlanObj._id : null;
 
       const { data } = await axios.post(
-        "http://localhost:5000/api/payment/create",
+        `${import.meta.env.VITE_SERVER_URL || 'http://localhost:5000'}/api/payment/create`,
         { amount: amount * 100 }
       );
 
@@ -90,7 +90,7 @@ function Plans() {
 
           try {
             await axios.post(
-              "http://localhost:5000/api/payment/success",
+              `${import.meta.env.VITE_SERVER_URL || 'http://localhost:5000'}/api/payment/success`,
               {
                 name: user.name,
                 email: user.email,

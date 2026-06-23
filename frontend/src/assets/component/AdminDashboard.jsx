@@ -54,7 +54,7 @@ planType:"Monthly"
 // LOAD USERS
 const loadUsers = async () => {
  try {
-  const res = await axios.get("http://localhost:5000/api/admin/users");
+  const res = await axios.get(`${import.meta.env.VITE_SERVER_URL || 'http://localhost:5000'}/api/admin/users`);
   setUsers(res.data);
  } catch(err){
   console.log(err);
@@ -67,7 +67,7 @@ const loadStats = async (dates) => {
   const params = {};
   if (dates?.startDate) params.startDate = dates.startDate;
   if (dates?.endDate) params.endDate = dates.endDate;
-  const res = await axios.get("http://localhost:5000/api/admin/stats", { params });
+  const res = await axios.get(`${import.meta.env.VITE_SERVER_URL || 'http://localhost:5000'}/api/admin/stats`, { params });
   setStats(res.data);
  } catch(err){
   console.log(err);
@@ -138,7 +138,7 @@ const addMember = async () => {
    if(member.planName === "Elite" && member.planType === "Yearly") amount = 19999;
 
    await axios.post(
-     "http://localhost:5000/api/admin/add-member",
+     `${import.meta.env.VITE_SERVER_URL || 'http://localhost:5000'}/api/admin/add-member`,
      {
        name: member.name,
        phone: member.phone,

@@ -10,7 +10,7 @@ function UserDashboard(){
 
  useEffect(() => {
    if (storedUser?.email) {
-     axios.get(`http://localhost:5000/api/auth/me/${storedUser.email}`)
+     axios.get(`${import.meta.env.VITE_SERVER_URL || 'http://localhost:5000'}/api/auth/me/${storedUser.email}`)
        .then(res => {
          if(res.data.user) {
            setUser(res.data.user);
@@ -19,7 +19,7 @@ function UserDashboard(){
        })
        .catch(err => console.log(err));
 
-     axios.get(`http://localhost:5000/api/payment/user/${storedUser.email}`)
+     axios.get(`${import.meta.env.VITE_SERVER_URL || 'http://localhost:5000'}/api/payment/user/${storedUser.email}`)
        .then(res => {
          setPayments(res.data);
        })
@@ -57,7 +57,7 @@ function UserDashboard(){
 
  const submitEdit = async () => {
    try {
-     const res = await axios.put("http://localhost:5000/api/auth/update-profile", {
+     const res = await axios.put(`${import.meta.env.VITE_SERVER_URL || 'http://localhost:5000'}/api/auth/update-profile`, {
        email: user.email,
        ...editForm
      });

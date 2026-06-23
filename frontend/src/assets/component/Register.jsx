@@ -16,7 +16,7 @@ function Register() {
     try {
 
       await axios.post(
-        "http://localhost:5000/api/auth/register",
+        `${import.meta.env.VITE_SERVER_URL || 'http://localhost:5000'}/api/auth/register`,
         {
           name,
           email,
